@@ -1,0 +1,43 @@
+<div style="padding-top: 20px;">
+  <h1>Navires</h1>
+
+  <p *ngIf="!(ships$ | async)"><em>Loading...</em></p>
+  <p>
+  </p>
+
+  <div *ngIf="(ships$ | async)?.length == 0">
+    Pas de navires à afficher
+    <a href="/add" class="btn btn-success btn-sm">Ajouter</a>
+  </div>
+
+  <table class="table table-sm table-hover" *ngIf="(ships$ | async)?.length>0">
+    <thead>
+      <tr>
+        <th>Numéro</th>
+        <th>Nom</th>
+        <th>Année de construction</th>
+        <th>Longueur du navire</th>
+        <th>Largeur du navire</th>
+        <th>Tonnage brut</th>
+        <th>Tonnage net</th>
+        <th>utilisateur</th>
+        <th><a href="/add" class="btn btn-success btn-sm float-right">Ajouter</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ship of (ships$ | async)">
+        <td>{{ ship.number }}</td>
+        <td>{{ ship.name }}</td>
+        <td>{{ ship.yearOfConstruction }}</td>
+        <td>{{ ship.lengthOfVessel }}</td>
+        <td>{{ ship.vesselWidth }}</td>
+        <td>{{ ship.grossTonnage}}</td>
+        <td>{{ ship.netTonnage}}</td>
+        <td></td>
+
+        <td><a [routerLink]="['/ship/edit/', ship.number]" class="btn btn-primary btn-sm float-right">Modifier</a></td>
+        <td><a [routerLink]="" (click)="delete(ship.number)" class="btn btn-danger btn-sm float-right">Supprimer</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

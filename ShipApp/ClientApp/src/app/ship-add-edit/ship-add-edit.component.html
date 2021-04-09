@@ -1,0 +1,61 @@
+<div style="padding-top: 20px;">
+  <h1>{{actionType}} navire</h1>
+  <form [formGroup]="form" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="Body">Nom</label>
+      <div class="col-md-12">
+        <input type="text" class="form-control" formControlName="name" />
+      </div>
+      <span class="text-danger ml-3" *ngIf="name && name.invalid && formDir.submitted">
+        Le nom est requis.
+      </span>
+    </div>
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="Body">Année de construction</label>
+      <div class="col-md-12">
+        <input type="text" class="form-control" formControlName="yearOfConstruction" />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="Body">Longueur du navire en m</label>
+      <div class="col-md-12">
+        <input class="form-control" formControlName="lengthOfVessel" ng-model="lengthOfVessel | number : 2" />
+      </div>
+      <span class="text-danger ml-3" *ngIf="lengthOfVessel && lengthOfVessel.invalid && formDir.submitted">
+        Longueur du navire en m est requise.
+      </span>
+    </div>
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="Body">Largeur du navire en m</label>
+      <div class="col-md-12">
+        <input class="form-control" formControlName="vesselWidth" ng-model="vesselWidth | number : 2" />
+      </div>
+      <span class="text-danger ml-3" *ngIf="vesselWidth && vesselWidth.invalid && formDir.submitted">
+        Largeur du navire en m est requise.
+      </span>
+    </div>
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="Body">Tonnage brut</label>
+      <div class="col-md-12">
+        <input class="form-control" formControlName="grossTonnage" />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="Body">Tonnage net</label>
+      <div class="col-md-12">
+        <input class="form-control" formControlName="netTonnage" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-success float-right">Save</button>
+      <button class="btn btn-secondary float-left" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>
